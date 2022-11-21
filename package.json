@@ -1,0 +1,35 @@
+{
+  "name": "itec",
+  "version": "1.0.0",
+  "description": "itec webAppinit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XxExecut0rxX/itec1.git"
+  },
+  "author": "XxExecut0rxX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XxExecut0rxX/itec1/issues"
+  },
+  "homepage": "https://github.com/XxExecut0rxX/itec1#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-mysql-session": "^2.1.8",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
