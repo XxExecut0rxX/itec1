@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hello Word!')
-})
+const pool = require('../database');
+
+router.get('/add', (req, res) => {
+    res.send('Form');
+});
 
 module.exports = router;

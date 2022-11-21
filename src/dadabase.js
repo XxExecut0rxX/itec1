@@ -5,7 +5,7 @@ const {database} = require('./keys');
 
 const pool = mysql.createPool(database);
 
-
+console.log('connecting');
 
 pool.getConnection((err, connection) => {
     if (err) {
