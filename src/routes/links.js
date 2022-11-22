@@ -3,12 +3,17 @@ const router = express.Router();
 
 const pool = require('../database');
 
-router.get('/add', (req, res) => {
-    res.render('links/add_item', { title: 'Add new User', style: '/css/styles_dashboard.css'});
+router.get('/add', async (req, res) => {
+    const item_ids = await pool.query('SELECT id FROM producto');
+    const last_id = item_ids[item_ids.length - 1].id;
+    const next_id = last_id + 1;
+    console.log(last_id);
+    res.render('links/add_item', { title: 'Add new User', style: '/css/styles_dashboard.css', next_id: next_id});
 });
 
 router.post('/add', async (req, res) => {
-    // console.log(req.body);
+    // console.log(req.body);<
+
     const {id, name, price, stock} = req.body;
     const newItem = {
         id,
