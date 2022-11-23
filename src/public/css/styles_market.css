@@ -33,7 +33,8 @@ a {
     height: 16px;
 }
 
-* * Sidebar */ .sidebar {
+/* * Sidebar */ 
+.sidebar {
     position: fixed;
     top: 0;
     /* rtl:raw:
