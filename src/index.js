@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// notification messages - success - fail , etc.
+const flash = require('connect-flash');
+const session = require('express-session');
+const mysqlStore = require('express-mysql-session');
+const {database} = require('./keys');
+
 const morgan = require('morgan');
 const express_hbs = require('express-handlebars');
 // import { engine } from 'express-handlebars';
@@ -22,13 +28,20 @@ app.engine('.hbs', express_hbs.engine({
 app.set('view engine', '.hbs');
 
 // middlewares
+app.use(session({
+    secret: 'faztsession', 
+    resave: false,
+    saveUninitialized: false,
+    store: new mysqlStore(database)
+}));
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // global variables
 app.use((req, res, next) => {
-    
+    app.locals.success = req.flash('success');
     next();
 })
 

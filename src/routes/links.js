@@ -28,6 +28,7 @@ router.post('/add', async (req, res) => {
     // console.log(newItem);
     await pool.query('INSERT INTO producto set ?', [newItem]);
     // await console.log(pool.query('SELECT * FROM producto'));
+    req.flash('success', 'Nuevo Producto se Añadio Correctamente');
     res.redirect('/links');
 });
 
@@ -42,7 +43,7 @@ router.get('/delete/:id', async (req, res) => {
     const { id } = req.params;
     await pool.query('DELETE FROM producto WHERE id = ?', [id]);
     res.redirect('/links');
-})
+});
 
 router.get('/edit/:id', async (req, res) => {
     const {id} = req.params;

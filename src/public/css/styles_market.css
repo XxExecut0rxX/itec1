@@ -134,16 +134,3 @@ a {
 
 
 /***************** MEDIA QUERIES ********************/
-
-/* Extra large and avobe */
-
-@media (min-width: 1400px) {
-    /* .search-bar-container {
-        width: 40%;
-        margin: auto;
-    } */
-
-    .card-img-top {
-        height: 15rem;
-    }
-}
