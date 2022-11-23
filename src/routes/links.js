@@ -11,8 +11,8 @@ router.get('/add', async (req, res) => {
     else 
         last_id = 0;
     const next_id = last_id + 1;
-    console.log(last_id);
-    res.render('links/add_item', { title: 'Add new User', style: '/css/styles_dashboard.css', next_id: next_id,});
+    // console.log(last_id);
+    res.render('links/add_item', { title: 'Añadir Nuevo Producto', style: '/css/styles_dashboard.css', next_id: next_id,});
 });
 
 router.post('/add', async (req, res) => {
@@ -25,7 +25,7 @@ router.post('/add', async (req, res) => {
         price,
         stock
     };
-    console.log(newItem);
+    // console.log(newItem);
     await pool.query('INSERT INTO producto set ?', [newItem]);
     // await console.log(pool.query('SELECT * FROM producto'));
     res.redirect('/links');
@@ -34,7 +34,7 @@ router.post('/add', async (req, res) => {
 router.get('/', async (req, res) => {
     const catalog_list = await pool.query('SELECT * FROM producto');
     // console.log(catalog_list);
-    res.render('links/item_list', {title: 'Lista de Productos', style: '/css/styles_market.css', list: catalog_list, img_c: '/catalog_imgs/arduino.jpg'});
+    res.render('links/item_list', {title: 'Lista de Productos', style: '/css/styles_market.css', list: catalog_list});
 });
 
 router.get('/delete/:id', async (req, res) => {
@@ -46,9 +46,21 @@ router.get('/delete/:id', async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const {id} = req.params;
-    console.log(id);
     item = await pool.query('SELECT * FROM producto WHERE id = ?', [id]);
-    res.render('links/edit_item', {item: item});
+    // console.log(item[0]);
+    res.render('links/edit_item', { title: 'Editar Producto', style: '/css/styles_dashboard.css', item: item[0]});
+});
+
+router.post('/edit/:id', async (req, res) => {
+    const {id} = req.params;
+    const {name, price, stock, img_dir} = req.body;
+    const editItem = {
+        name,
+        price,
+        stock,
+    };
+    await pool.query('UPDATE producto set ? WHERE id = ?' , [editItem, id])
+    res.redirect('/links');
 });
 
 module.exports = router;
